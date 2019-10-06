@@ -1,0 +1,16 @@
+title: Flight
+type: object
+properties:
+  barcodeData:
+    type: string
+    format: binary
+  checkedInStatus:
+    type: string
+    enum:
+      - CHECKED_IN
+      - NOT_CHECKED_IN
+      - BOARDED
+  seatNumber:
+    type: string
+    example: F2
+    pattern: '^[A-Z][1-9]$'

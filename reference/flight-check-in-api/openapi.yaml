@@ -11,12 +11,40 @@ paths:
       tags: []
       responses: {}
     parameters: []
-  /check-in:
+  '/check-in/{flightNumber}/{ticketNumber}':
     post:
       summary: ''
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/flight.v1.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                passportNumber:
+                  type: string
+    parameters:
+      - schema:
+          type: string
+          pattern: '^[A-Z]{2}[0-9]{4}$'
+        name: flightNumber
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: ticketNumber
+        in: path
+        required: true
   '/check-in/passengers/{flightNumber}/{ticketNumber}':
     get:
       summary: Your GET endpoint
@@ -33,21 +61,7 @@ paths:
                   flights:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        barcodeData:
-                          type: string
-                          format: binary
-                        checkedInStatus:
-                          type: string
-                          enum:
-                            - CHECKED_IN
-                            - NOT_CHECKED_IN
-                            - BOARDED
-                        seatNumber:
-                          type: string
-                          example: F2
-                          pattern: '^[A-Z][1-9]$'
+                      $ref: ../common/models/flight.v1.yaml
       parameters: []
     parameters:
       - schema:
