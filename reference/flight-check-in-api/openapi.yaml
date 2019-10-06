@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: Flight Check-In API
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /check-in/boarding-pass:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+    parameters: []
+  /check-in:
+    post:
+      summary: ''
+      responses:
+        '200':
+          description: OK
+  /check-in/passengers:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  flights:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        barcodeData:
+                          type: string
+                          format: binary
+                        checkedInStatus:
+                          type: string
+                          enum:
+                            - CHECKED_IN
+                            - NOT_CHECKED_IN
+                            - BOARDED
+                        seatNumber:
+                          type: string
+                          example: F2
+                          pattern: '^[A-Z][1-9]$'
+components:
+  schemas: {}
