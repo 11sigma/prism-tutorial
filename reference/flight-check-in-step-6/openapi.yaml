@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Flight Check-In Step 5
+  title: Flight Check-In Step 6
   version: '1.0'
 servers:
   - url: 'http://localhost:3000'
@@ -35,3 +35,24 @@ paths:
           in: query
           name: flightNumber
           required: true
+  /check-in:
+    post:
+      summary: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../common/models/flight.v1.yaml
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../common/models/passenger.v1.yaml
+      parameters:
+        - schema:
+            type: string
+            pattern: '^[A-Z]{2} [1-9]{4}$'
+          in: query
+          name: flightNumber
