@@ -66,12 +66,13 @@ paths:
     parameters:
       - schema:
           type: string
-          pattern: '^[A-Z]+ [0-9]+$'
+          pattern: '^[A-Z]{2} [0-9]{4}$'
         name: flightNumber
         in: path
         required: true
       - schema:
           type: number
+          minimum: 1
         name: ticketNumber
         in: path
         required: true

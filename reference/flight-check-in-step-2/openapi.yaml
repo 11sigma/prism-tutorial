@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Flight Check-In Step 1
+  title: Flight Check-In Step 2
   version: '1.0'
 servers:
   - url: 'http://localhost:3000'

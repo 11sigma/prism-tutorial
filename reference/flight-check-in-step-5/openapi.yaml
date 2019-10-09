@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info:
+  title: Flight Check-In Step 5
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/check-in/passengers/{flightNumber}/{ticketNumber}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              examples:
+                checked-in-passenger:
+                  value:
+                    barcodeData: s0m3numb3r5
+                    checkedInStatus: CHECKED_IN
+                    seatNumber: A3
+                not-checked-in-passenger:
+                  value:
+                    barcodeData: s0m3numb3r5
+                    checkedInStatus: NOT_CHECKED_IN
+                    seatNumber: A3
+              schema:
+                $ref: ../common/models/flight.v1.yaml
+    parameters:
+      - schema:
+          type: string
+          pattern: '^[A-Z]{2} [0-9]{4}$'
+        name: flightNumber
+        in: path
+        required: true
+      - schema:
+          type: number
+          minimum: 1
+        name: ticketNumber
+        in: path
+        required: true
